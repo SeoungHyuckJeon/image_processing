@@ -62,4 +62,5 @@ int main()
         if (key == 'q')
             break;
     }
+    return 0;
 }
