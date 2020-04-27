@@ -15,9 +15,9 @@ int main()
     blur(src, avgf, Size(3, 3));
 
     Sobel(src, src_x, CV_16S, 1, 0, 3, scale, delta, BORDER_DEFAULT);
-    Sobel(src, src_y, CV_16S, 1, 0, 3, scale, delta, BORDER_DEFAULT);
+    Sobel(src, src_y, CV_16S, 0, 1, 3, scale, delta, BORDER_DEFAULT);
     Sobel(avgf, avgf_x, CV_16S, 1, 0, 3, scale, delta, BORDER_DEFAULT);
-    Sobel(avgf, avgf_y, CV_16S, 1, 0, 3, scale, delta, BORDER_DEFAULT);
+    Sobel(avgf, avgf_y, CV_16S, 0, 1, 3, scale, delta, BORDER_DEFAULT);
 
     convertScaleAbs(src_x, abs_src_x);
     convertScaleAbs(src_y, abs_src_y);
