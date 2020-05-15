@@ -1,0 +1,3 @@
+/mnt/c/Users/itsme/Documents/opencv/163337_10_2/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/itsme/Documents/opencv/163337_10_2/CMakeFiles/edit_cache.dir
+/mnt/c/Users/itsme/Documents/opencv/163337_10_2/CMakeFiles/163337_10_2.dir
