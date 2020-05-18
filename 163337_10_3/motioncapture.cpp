@@ -7,9 +7,12 @@ int main()
     Mat bg, frame, sub, binary, result;
     cap.read(bg);
 
-    int threshold_value = 127;
+    float weights[9] = {-1, -1, -1, -1, 9, -1, -1, -1, -1};
+    Mat mask = Mat(3, 3, CV_32F, weights);
+    int threshold_value = 100;
     Mat element = getStructuringElement(MORPH_RECT, Size(5, 5));
     cvtColor(bg, bg, COLOR_BGR2GRAY);
+    equalizeHist(bg, bg);
 
     if (!cap.isOpened())
         return -1;
@@ -22,9 +25,10 @@ int main()
             break;
         }
         cvtColor(frame, frame, COLOR_BGR2GRAY);
+        equalizeHist(frame, frame);
 
         //배경 제거
-        subtract(frame, bg, sub);
+        absdiff(frame, bg, sub);
         //이진화
         threshold(sub, binary, threshold_value, 255, THRESH_BINARY);
         //형태학적 처리
@@ -35,6 +39,10 @@ int main()
             break;
     }
     imshow("bg", bg);
-    waitKey(0);
-    return 0;
+    while (1)
+    {
+        int key = waitKey(100);
+        if (key == 'q')
+            return 0;
+    }
 }

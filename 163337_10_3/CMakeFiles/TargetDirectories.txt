@@ -1,3 +1,3 @@
-/mnt/e/Documents/opencv/163337_10_3/CMakeFiles/rebuild_cache.dir
-/mnt/e/Documents/opencv/163337_10_3/CMakeFiles/edit_cache.dir
-/mnt/e/Documents/opencv/163337_10_3/CMakeFiles/163337_10_3.dir
+/mnt/c/Users/itsme/Documents/opencv/163337_10_3/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/itsme/Documents/opencv/163337_10_3/CMakeFiles/edit_cache.dir
+/mnt/c/Users/itsme/Documents/opencv/163337_10_3/CMakeFiles/163337_10_3.dir

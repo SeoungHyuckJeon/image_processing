@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/e/Documents/opencv/163337_10_3/motioncapture.cpp" "/mnt/e/Documents/opencv/163337_10_3/CMakeFiles/163337_10_3.dir/motioncapture.cpp.o"
+  "/mnt/c/Users/itsme/Documents/opencv/163337_10_3/motioncapture.cpp" "/mnt/c/Users/itsme/Documents/opencv/163337_10_3/CMakeFiles/163337_10_3.dir/motioncapture.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
