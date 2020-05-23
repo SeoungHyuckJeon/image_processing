@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/e/Documents/opencv/163337_10_3
+CMAKE_SOURCE_DIR = /mnt/c/Users/itsme/Documents/opencv/163337_10_3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/e/Documents/opencv/163337_10_3
+CMAKE_BINARY_DIR = /mnt/c/Users/itsme/Documents/opencv/163337_10_3
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ clean: CMakeFiles/163337_10_3.dir/clean
 CMakeFiles/163337_10_3.dir/all:
 	$(MAKE) -f CMakeFiles/163337_10_3.dir/build.make CMakeFiles/163337_10_3.dir/depend
 	$(MAKE) -f CMakeFiles/163337_10_3.dir/build.make CMakeFiles/163337_10_3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/e/Documents/opencv/163337_10_3/CMakeFiles --progress-num=1,2 "Built target 163337_10_3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/itsme/Documents/opencv/163337_10_3/CMakeFiles --progress-num=1,2 "Built target 163337_10_3"
 .PHONY : CMakeFiles/163337_10_3.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/163337_10_3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/e/Documents/opencv/163337_10_3/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/itsme/Documents/opencv/163337_10_3/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/163337_10_3.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/e/Documents/opencv/163337_10_3/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/itsme/Documents/opencv/163337_10_3/CMakeFiles 0
 .PHONY : CMakeFiles/163337_10_3.dir/rule
 
 # Convenience name for target.
