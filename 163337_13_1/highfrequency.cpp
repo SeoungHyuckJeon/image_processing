@@ -23,31 +23,29 @@ void shuffleDFT(Mat &src)
 void displayDFT(Mat &src)
 {
     Mat image_array[2] = {Mat::zeros(src.size(), CV_32F), Mat::zeros(src.size(), CV_32F)};
+    //DFT 결과 영상을 분할함
     split(src, image_array);
     Mat mag_image;
-
+    //푸리에 변환 계수들의 절대값을 계산
     magnitude(image_array[0], image_array[1], mag_image);
-
+    //푸리에 변환 계수들을 로그 스케일로 변환하고, 0값이 나오지 않도록 1을 더해줌
     mag_image += Scalar::all(1);
     log(mag_image, mag_image);
-
-    normalize(mag_image, mag_image, 0, 1, 32);
+    //정규화
+    normalize(mag_image, mag_image, 0, 1, NORM_MINMAX);
     imshow("DFT", mag_image);
 }
 
 Mat getFilter(Size size)
 {
     Mat filter = Mat::ones(size, CV_32FC2);
-    circle(filter, size / 2, 10, Vec2f(0, 0), -1);
+    circle(filter, size / 2, 40, Vec2f(0.5, 0.75), -1);
     return filter;
 }
 
-int main()
+Mat hfpass(Mat src)
 {
-    Mat src = imread("Q1.tif", IMREAD_GRAYSCALE);
     Mat src_float;
-    imshow("original", src);
-
     src.convertTo(src_float, CV_32FC1, 1.0 / 255.0);
     Mat dft_image;
     dft(src_float, dft_image, DFT_COMPLEX_OUTPUT);
@@ -62,7 +60,42 @@ int main()
     Mat inverted_image;
     shuffleDFT(result);
     idft(result, inverted_image, DFT_SCALE | DFT_REAL_OUTPUT);
+    return inverted_image;
+}
+
+Mat sharpening(Mat src)
+{
+    Mat img;
+    float weights[9] = {-1, -1, -1, -1, 9, -1, -1, -1, -1};
+    Mat mask = Mat(3, 3, CV_32F, weights);
+    filter2D(src, img, -1, mask, Point(-1, -1), 0, BORDER_DEFAULT);
+    return img;
+}
+
+Mat eqHist(Mat src)
+{
+    Mat img;
+    src.convertTo(src, CV_8UC1);
+    equalizeHist(src, img);
+    return img;
+}
+
+int main()
+{
+    Mat src = imread("Q1.tif", IMREAD_GRAYSCALE);
+    imshow("original", src);
+
+    //고역통과 필터링
+    Mat inverted_image = hfpass(src);
     imshow("inverted", inverted_image);
+
+    // 샤프닝
+    Mat sharpen = sharpening(inverted_image);
+    imshow("hfEmphasized", sharpen);
+
+    //히스토그램 평활화
+    Mat eqH = eqHist(sharpen);
+    imshow("Histogram Equalization", eqH);
 
     while (1)
     {
