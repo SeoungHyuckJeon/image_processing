@@ -39,7 +39,7 @@ void displayDFT(Mat &src)
 Mat getFilter(Size size)
 {
     Mat filter = Mat::ones(size, CV_32FC2);
-    circle(filter, size / 2, 40, Vec2f(0.5, 0.75), -1);
+    circle(filter, size / 2, 25, Vec2f(0, 0), -1);
     return filter;
 }
 
@@ -54,22 +54,13 @@ Mat hfpass(Mat src)
     Mat highpass = getFilter(dft_image.size());
     Mat result;
 
-    multiply(dft_image, highpass, result);
+    multiply(dft_image, 0.5 + 0.7 * highpass, result);
     displayDFT(result);
 
     Mat inverted_image;
     shuffleDFT(result);
     idft(result, inverted_image, DFT_SCALE | DFT_REAL_OUTPUT);
     return inverted_image;
-}
-
-Mat sharpening(Mat src)
-{
-    Mat img;
-    float weights[9] = {-1, -1, -1, -1, 9, -1, -1, -1, -1};
-    Mat mask = Mat(3, 3, CV_32F, weights);
-    filter2D(src, img, -1, mask, Point(-1, -1), 0, BORDER_DEFAULT);
-    return img;
 }
 
 Mat eqHist(Mat src)
@@ -85,16 +76,12 @@ int main()
     Mat src = imread("Q1.tif", IMREAD_GRAYSCALE);
     imshow("original", src);
 
-    //고역통과 필터링
+    //고역통과 필터링 + 강조
     Mat inverted_image = hfpass(src);
     imshow("inverted", inverted_image);
 
-    // 샤프닝
-    Mat sharpen = sharpening(inverted_image);
-    imshow("hfEmphasized", sharpen);
-
     //히스토그램 평활화
-    Mat eqH = eqHist(sharpen);
+    Mat eqH = eqHist(src);
     imshow("Histogram Equalization", eqH);
 
     while (1)
