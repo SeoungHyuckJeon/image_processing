@@ -54,7 +54,7 @@ Mat hfpass(Mat src)
     Mat highpass = getFilter(dft_image.size());
     Mat result;
 
-    multiply(dft_image, 0.5 + 0.7 * highpass, result);
+    multiply(dft_image, 0.5 + 0.75 * highpass, result);
     displayDFT(result);
 
     Mat inverted_image;
@@ -66,7 +66,7 @@ Mat hfpass(Mat src)
 Mat eqHist(Mat src)
 {
     Mat img;
-    src.convertTo(src, CV_8UC1);
+    src.convertTo(src, CV_8UC1, 255); //convertTo alpha = 화소에 곱해지는 수, 높을수록 화소가 밝아짐
     equalizeHist(src, img);
     return img;
 }
@@ -81,7 +81,7 @@ int main()
     imshow("inverted", inverted_image);
 
     //히스토그램 평활화
-    Mat eqH = eqHist(src);
+    Mat eqH = eqHist(inverted_image);
     imshow("Histogram Equalization", eqH);
 
     while (1)
