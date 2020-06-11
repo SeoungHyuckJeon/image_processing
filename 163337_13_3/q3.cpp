@@ -65,20 +65,11 @@ Mat highfrequency(Mat src)
     return inverted_image;
 }
 
-Mat sharpening(Mat src)
-{
-    Mat img;
-    float weights[9] = {-1, -1, -1, -1, 9, -1, -1, -1, -1};
-    Mat mask = Mat(3, 3, CV_32F, weights);
-    filter2D(src, img, -1, mask, Point(-1, -1), 0, BORDER_DEFAULT);
-    return img;
-}
-
 Mat binary(Mat src)
 {
     Mat dst;
     int threshold_value = 0.1;
-    threshold(src, dst, threshold_value, 255, THRESH_BINARY_INV);
+    threshold(src, dst, threshold_value, 255, THRESH_BINARY);
     return dst;
 }
 
